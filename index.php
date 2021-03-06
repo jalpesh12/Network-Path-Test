@@ -1,10 +1,5 @@
 <?php
 
-// Step 1 - Get the input csv path from console & get the data of csv
-            // If valid path not found (needs some action) might take test_data.csv as a fallback data.
-
-//--file=/Volumes/Jalpesh/Technology/codebase/project/test_data.csv
-
 require_once './console/Console.php';
 use NetworkTest\Console as Console;
 
@@ -17,7 +12,6 @@ while (($result = fgetcsv($file)) !== false)
 {
     $rawCSVData[] = $result;
 }
-
 
 // Step 2 - Get the input value from the console
             // Check for the valid input if proper input not provided then show message to provide valid input.
