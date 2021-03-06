@@ -1,10 +1,12 @@
 <?php
 
 require_once './console/Console.php';
+require_once './prepare_data/PrepareData.php';
+
 use NetworkTest\Console as Console;
+use NetworkTest\PrepareData as PrepareData;
 
 $console = new Console\Console();
-
 $rawCSVData = array();
 // Open and read the CSV Data
 $file = fopen($console->csvFilePath, 'r');
@@ -12,6 +14,14 @@ while (($result = fgetcsv($file)) !== false)
 {
     $rawCSVData[] = $result;
 }
+
+$prepareData = new PrepareData\PrepareData();
+if (!empty($rawCSVData)) {
+    $structuredData = $prepareData->processCSVData($rawCSVData);
+}
+
+
+
 
 // Step 2 - Get the input value from the console
             // Check for the valid input if proper input not provided then show message to provide valid input.
