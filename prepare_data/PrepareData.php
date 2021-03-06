@@ -21,7 +21,7 @@ class PrepareData {
      */
     public function processCSVData($rawCSVData) {
         $refinedData = [];
-        foreach ($rawCSVData as $index => $csvRow) {
+        foreach ($rawCSVData as $index => $csvRow) {    
           $tmp = [];
           $tmp[$csvRow[0]] = [
             $csvRow[1] => $csvRow[2]
