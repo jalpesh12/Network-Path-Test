@@ -6,7 +6,7 @@ This algorithm will find the shortest path between the two devices withing the g
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
-A CSV file to provide data. Here in the repo iteself you will fine one sample test data file.
+A CSV file to provide data. Here in the repo itself you will fine one sample test data file.
 
 ### Run the project through console
 Say to run locally
