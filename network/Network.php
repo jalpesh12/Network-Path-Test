@@ -6,6 +6,8 @@
 
 namespace NetworkTest\Network;
 
+require_once 'NetworkInterface.php';
+
 class Network implements NetworkInterface {
 
      /**

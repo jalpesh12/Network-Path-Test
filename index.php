@@ -2,9 +2,14 @@
 
 require_once './console/Console.php';
 require_once './prepare_data/PrepareData.php';
+require_once './network/Device.php';
+require_once './network/Network.php';
+
 
 use NetworkTest\Console as Console;
 use NetworkTest\PrepareData as PrepareData;
+use NetworkTest\Network\Device as Device;
+use NetworkTest\Network\Network as Network;
 
 $console = new Console\Console();
 $rawCSVData = array();
@@ -19,6 +24,34 @@ $prepareData = new PrepareData\PrepareData();
 if (!empty($rawCSVData)) {
     $structuredData = $prepareData->processCSVData($rawCSVData);
 }
+
+$network = new Network();
+
+$devices = [];
+// Initalized and set all the unique devices in the network
+foreach ($prepareData->unqiueDevices as $device => $deviceName) {
+    $devices[$device] = new Device($device);
+}
+
+
+if (!empty($structuredData)) {
+    foreach($structuredData as $device => $adjacentDevice) {
+        foreach($adjacentDevice as $deviceName => $deviceValue) {
+            if (isset($devices[$deviceName])) {
+                $devices[$device]->connect($devices[$deviceName], $deviceValue); 
+            }
+            
+        }
+        $network->add($devices[$device]);
+    }
+}
+
+
+print_r($network);
+die();
+
+
+
 
 
 

@@ -33,7 +33,12 @@ class PrepareData {
         if (!empty($refinedData)) {
             foreach($refinedData as $refinedIndex => $refinedValue) {
                 foreach ($refinedValue as $itemKey => $itemValue) {
-                    $this->unqiueDevices[$itemKey] = $itemKey;
+                    if (!in_array($itemKey, $this->unqiueDevices)) {
+                        $this->unqiueDevices[$itemKey] = $itemKey;
+                    }
+                    if (!in_array(key($itemValue), $this->unqiueDevices)) {
+                        $this->unqiueDevices[key($itemValue)] = key($itemValue);
+                    }
                     $structuredData[$itemKey][key($itemValue)] = $itemValue[key($itemValue)];
                 }
             }

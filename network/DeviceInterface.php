@@ -3,7 +3,6 @@
 /**
  * Interface Device
  */
-
 namespace NetworkTest\Network;
 
 interface DeviceInterface {

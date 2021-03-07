@@ -3,8 +3,9 @@
 /**
  * Class Device is the foundation of a network entity.
  */
-
 namespace NetworkTest\Network;
+
+require_once 'DeviceInterface.php';
 
 class Device implements DeviceInterface {
     protected $id;
