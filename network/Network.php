@@ -42,6 +42,7 @@ class Network implements NetworkInterface {
     {
         $devices = $this->getDevices();
 
+
         if (!array_key_exists($id, $devices)) {
             echo 'Unable to find ' . $id . ' in the graph';
         }
