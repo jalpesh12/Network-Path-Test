@@ -67,9 +67,9 @@ class NetworkPath implements AlgorithmInterface {
         }
 
         if ($this->getMaximumLatency() > $this->getEndingDevice()->getPotential()) {
-            return substr($literal, 0, -3) . '=> ' . $this->getEndingDevice()->getPotential();
+            return substr($literal, 0, -3) . '=> ' . $this->getEndingDevice()->getPotential() . PHP_EOL;
         } else {
-            return 'Path Not found';
+            return 'Path Not found' . PHP_EOL;
         }
         
     }
@@ -117,9 +117,6 @@ class NetworkPath implements AlgorithmInterface {
      */
     public function setEndingDevice(DeviceInterface $device) {
         $this->endingDevice = $device;
-        // print_r($this->endingDevice);
-        // // echo $this->endingDevice;
-        // die();
     }
 
     /**

@@ -12,6 +12,7 @@ use NetworkTest\Network\Device as Device;
 use NetworkTest\Network\Network as Network;
 use NetworkTest\Network\Algorithm\NetworkPath as NetworkPath;
 
+
 $console = new Console\Console();
 $rawCSVData = array();
 // Open and read the CSV Data
@@ -31,7 +32,7 @@ $network = new Network();
 $devices = [];
 // Initalized and set all the unique devices in the network
 foreach ($prepareData->unqiueDevices as $device => $deviceName) {
-    $devices[$deviceName] = new Device($deviceName);
+    $devices[$device] = new Device($device);
 }
 
 
@@ -44,9 +45,11 @@ if (!empty($structuredData)) {
     }
 }
 
-// Register/Add all the devices
-foreach ($devices as $device => $deviceName) {
-    $network->add($devices[$device]);
-}
+$starting_index = 'A';
+$ending_index = 'D';
 
-$console->initConsole($network, $devices);
+$visited_nodes = [];
+
+
+
+

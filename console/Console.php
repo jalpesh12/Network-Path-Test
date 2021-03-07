@@ -76,7 +76,7 @@ class Console {
      * @param $option input parameter from the console
      */
     public function exitProgram($option) {
-        if (strtoupper($option) == 'QUIT' || $option == 'EXIT') {
+        if (strtoupper($option) == 'QUIT' || strtoupper($option) == 'EXIT') {
             die();
         }
     }

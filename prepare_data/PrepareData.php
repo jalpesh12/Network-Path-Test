@@ -21,26 +21,17 @@ class PrepareData {
      */
     public function processCSVData($rawCSVData) {
         $refinedData = [];
-        foreach ($rawCSVData as $index => $csvRow) {    
-          $tmp = [];
-          $tmp[$csvRow[0]] = [
-            $csvRow[1] => $csvRow[2]
-          ];
-          $refinedData[] = $tmp;
+        foreach($rawCSVData as $index => $rowData) {
+            $refinedData[$rowData[0]][] = [$rowData[1] => $rowData[2]];
+            $refinedData[$rowData[1]][] = [$rowData[0] => $rowData[2]];
         }
 
         $structuredData = [];
         if (!empty($refinedData)) {
-            foreach($refinedData as $refinedIndex => $refinedValue) {
-                foreach ($refinedValue as $itemKey => $itemValue) {
-                    if (!in_array($itemKey, $this->unqiueDevices)) {
-                        $this->unqiueDevices[$itemKey] = $itemKey;
-                    }
-                    if (!in_array(key($itemValue), $this->unqiueDevices)) {
-                        $this->unqiueDevices[key($itemValue)] = key($itemValue);
-                    }
-                    $structuredData[$itemKey][key($itemValue)] = $itemValue[key($itemValue)];
-                }
+            $this->unqiueDevices = array_keys($refinedData);
+            foreach ($refinedData as $device => $adjacentDevices) {
+                $allAjacentDevices = call_user_func_array('array_merge', $adjacentDevices);
+                $structuredData[$device] =  $allAjacentDevices;
             }
         }
 
